@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC · JULY 1926 — Bernie's Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2ead5;
+    --paper-deep: #ebe0c1;
+    --ink: #1a1410;
+    --ink-soft: #3a312a;
+    --mets-blue: #002d72;
+    --mets-orange: #ff5910;
+    --rust: #b8431f;
+    --mustard: #d4a017;
+    --sage: #5a6d52;
+    --stamp-red: #c1272d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif TC', 'Fraunces', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(184, 67, 31, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0, 45, 114, 0.04) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  }
+
+  a { color: inherit; }
+
+  /* ==== TOP NAVIGATION ==== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 3px double var(--mets-orange);
+  }
+
+  .topbar .marquee {
+    overflow: hidden;
+    flex: 1;
+    margin: 0 24px;
+  }
+  .topbar .marquee-inner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .topbar .marquee span { margin-right: 40px; color: var(--mets-orange); }
+  .topbar .marquee span:nth-child(even) { color: var(--paper); }
+
+  /* ==== HERO / MASTHEAD ==== */
+  .masthead {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px 20px;
+    border-bottom: 6px double var(--ink);
+    position: relative;
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink-soft);
+  }
+
+  h1.title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(60px, 11vw, 160px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    margin-bottom: 4px;
+    color: var(--ink);
+    position: relative;
+  }
+  h1.title .ampersand {
+    font-style: italic;
+    color: var(--mets-orange);
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+  }
+
+  .subtitle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 32px);
+    color: var(--rust);
+    font-weight: 400;
+    max-width: 600px;
+    line-height: 1.3;
+  }
+
+  .stamp {
+    background: var(--stamp-red);
+    color: var(--paper);
+    padding: 14px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transform: rotate(-4deg);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--stamp-red);
+    position: relative;
+    white-space: nowrap;
+  }
+  .stamp::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px dashed var(--stamp-red);
+    pointer-events: none;
+  }
+
+  /* ==== BYLINE ==== */
+  .byline {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .byline-item {
+    padding: 0 20px;
+    border-right: 1px solid var(--ink-soft);
+  }
+  .byline-item:last-child { border-right: none; }
+  .byline-item:first-child { padding-left: 0; }
+  .byline-item .label {
+    color: var(--ink-soft);
+    font-size: 9px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .byline-item .value {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* ==== SECTION STYLES ==== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--ink-soft);
+  }
+
+  h2.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .section-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mets-orange);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-kicker::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ink-soft);
+  }
+
+  .section-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 700px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ==== ALERT / WARNING BOX ==== */
+  .alert {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 32px 36px;
+    margin: 40px 0;
+    position: relative;
+    border-left: 8px solid var(--mets-orange);
+  }
+  .alert .alert-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mets-orange);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .alert h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .alert p {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  /* ==== FLIGHT TICKET ==== */
+  .flight-ticket {
+    background: var(--paper-deep);
+    border: 2px solid var(--ink);
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .flight-ticket::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 75%;
+    width: 2px;
+    border-left: 2px dashed var(--ink);
+  }
+
+  .flight-main {
+    padding: 32px 40px;
+  }
+  .flight-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 28px;
+  }
+  .flight-airport {
+    text-align: center;
+  }
+  .airport-code {
+    font-family: 'DM Serif Display', serif;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .airport-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: var(--ink-soft);
+  }
+  .plane-path {
+    flex: 1;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .plane-path svg { width: 100%; height: 100%; }
+
+  .flight-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .flight-details .detail-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .flight-details .detail-value {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .flight-stub {
+    padding: 32px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flight-stub .stub-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .flight-stub .stub-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    line-height: 1;
+  }
+  .barcode {
+    width: 80px;
+    height: 40px;
+    background:
+      linear-gradient(90deg,
+        var(--ink) 2px, transparent 2px,
+        var(--ink) 3px, transparent 3px,
+        var(--ink) 5px, transparent 5px,
+        var(--ink) 6px, transparent 6px,
+        var(--ink) 9px, transparent 9px,
+        var(--ink) 11px, transparent 11px,
+        var(--ink) 13px, transparent 13px,
+        var(--ink) 14px, transparent 14px,
+        var(--ink) 18px, transparent 18px);
+    background-size: 20px 100%;
+    opacity: 0.9;
+  }
+
+  /* ==== DAY CARD / ITINERARY ==== */
+  .day-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .day-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-top: 1px solid var(--ink);
+    padding: 40px 0;
+    position: relative;
+  }
+  .day-card:last-child { border-bottom: 1px solid var(--ink); }
+
+  .day-label {
+    padding-right: 32px;
+  }
+  .day-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--mets-orange);
+  }
+  .day-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .day-weekday {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .day-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .day-subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--rust);
+    margin-bottom: 28px;
+  }
+
+  .timeline {
+    border-left: 2px solid var(--ink);
+    padding-left: 24px;
+    margin-left: 6px;
+  }
+  .timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    left: -32px;
+    top: 6px;
+  }
+  .timeline-item.highlight::before {
+    background: var(--mets-orange);
+    border-color: var(--mets-orange);
+    box-shadow: 0 0 0 4px rgba(255, 89, 16, 0.2);
+  }
+
+  .timeline-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    color: var(--mets-blue);
+    margin-bottom: 2px;
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--paper-deep);
+    border: 1px solid var(--ink-soft);
+  }
+  .timeline-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 8px 0 4px;
+  }
+  .timeline-title.big {
+    font-size: 24px;
+    color: var(--mets-orange);
+    font-weight: 700;
+  }
+  .timeline-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .pin-chip {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 4px 4px 0 0;
+    border-radius: 2px;
+  }
+
+  /* ==== GAME CARD (MLB) ==== */
+  .game-card {
+    background: var(--mets-blue);
+    color: var(--paper);
+    padding: 40px;
+    margin: 32px 0;
+    position: relative;
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--mets-orange);
+  }
+  .game-card::before {
+    content: '⚾';
+    position: absolute;
+    top: -20px;
+    right: 40px;
+    font-size: 60px;
+    background: var(--paper);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--ink);
+  }
+  .game-card .game-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mets-orange);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .game-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .game-card .game-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(242, 234, 213, 0.3);
+  }
+  .game-card .info-item .info-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .game-card .info-item .info-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+  }
+
+  /* ==== TABLE / LIST ==== */
+  .list-box {
+    border: 2px solid var(--ink);
+    background: var(--paper-deep);
+    padding: 0;
+    margin: 24px 0;
+  }
+  .list-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .list-row {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--ink-soft);
+    display: grid;
+    grid-template-columns: 1fr 2fr 80px;
+    gap: 20px;
+    align-items: center;
+    font-size: 15px;
+  }
+  .list-row:last-child { border-bottom: none; }
+  .list-row .name { font-weight: 700; font-family: 'Fraunces', serif; }
+  .list-row .desc { color: var(--ink-soft); font-size: 14px; }
+  .list-row .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 4px 8px;
+    background: var(--mustard);
+    color: var(--ink);
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+  }
+  .list-row .badge.must { background: var(--stamp-red); color: var(--paper); }
+  .list-row .badge.cut { background: var(--ink-soft); color: var(--paper); }
+
+  /* ==== GRID OF CARDS ==== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+  }
+  .info-card {
+    background: var(--paper-deep);
+    padding: 28px;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .info-card .card-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--mets-orange);
+    margin-bottom: 12px;
+  }
+  .info-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ==== TICKET / BOOKING CHECKLIST ==== */
+  .checklist {
+    margin: 24px 0;
+  }
+  .checklist-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--ink-soft);
+  }
+  .checklist-item .check-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mets-orange);
+  }
+  .checklist-item .check-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .checklist-item .check-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 2px;
+  }
+  .checklist-item .urgency {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-weight: 700;
+  }
+  .urgency.high { background: var(--stamp-red); color: var(--paper); }
+  .urgency.med { background: var(--mustard); color: var(--ink); }
+  .urgency.low { background: var(--sage); color: var(--paper); }
+
+  /* ==== FOOTER ==== */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 32px 30px;
+    text-align: center;
+  }
+  footer .footer-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  footer .footer-sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--mets-orange);
+    margin-bottom: 30px;
+  }
+  footer .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(242, 234, 213, 0.2);
+  }
+
+  /* ==== UTILITIES ==== */
+  .highlight-text { color: var(--mets-orange); font-weight: 700; }
+  .warn-text { color: var(--stamp-red); font-weight: 700; }
+
+  .map-embed {
+    margin: 32px 0;
+    padding: 0;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--mets-blue);
+    overflow: hidden;
+  }
+  .map-embed iframe { display: block; width: 100%; height: 480px; border: 0; }
+
+  /* ==== DIVIDER ==== */
+  .ornament {
+    text-align: center;
+    margin: 40px 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--rust);
+    letter-spacing: 1em;
+  }
+
+  /* ==== RESPONSIVE ==== */
+  @media (max-width: 768px) {
+    .byline { grid-template-columns: 1fr 1fr; }
+    .byline-item { padding: 8px 12px; border-bottom: 1px solid var(--ink-soft); }
+    .byline-item:nth-child(2n) { border-right: none; }
+    .flight-ticket { grid-template-columns: 1fr; }
+    .flight-ticket::before { display: none; }
+    .flight-stub { border-top: 2px dashed var(--ink); padding: 20px; }
+    .day-card { grid-template-columns: 1fr; gap: 24px; }
+    .day-label { padding-right: 0; border-bottom: 1px solid var(--ink-soft); padding-bottom: 16px; }
+    .day-number { font-size: 64px; }
+    .list-row { grid-template-columns: 1fr; gap: 8px; }
+    .list-row .badge { justify-self: start; }
+    .game-card .game-info { grid-template-columns: 1fr; gap: 16px; }
+    .flight-route { flex-direction: column; gap: 12px; }
+    .flight-details { grid-template-columns: 1fr 1fr; }
+    .topbar .marquee { display: none; }
+  }
+
+  /* Animation on load */
+  @keyframes fadeRise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .masthead { animation: fadeRise 0.8s ease-out; }
+  .masthead h1 { animation: fadeRise 0.9s ease-out 0.1s backwards; }
+  section { animation: fadeRise 0.6s ease-out; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>◈ NYC FIELD NOTES</span>
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>VOL. 01 · ISSUE JULY 2026</span>
+      <span>★ BERNIE'S DISPATCH ★</span>
+      <span>FIFA WORLD CUP IN TOWN</span>
+      <span>METS vs RED SOX · JULY 12</span>
+      <span>DAYS AWAY: PLAN EARLY</span>
+      <span>VOL. 01 · ISSUE JULY 2026</span>
+      <span>★ BERNIE'S DISPATCH ★</span>
+      <span>FIFA WORLD CUP IN TOWN</span>
+      <span>METS vs RED SOX · JULY 12</span>
+      <span>DAYS AWAY: PLAN EARLY</span>
+    </div>
+  </div>
+  <span>EST. 2026</span>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="top-row">
+    <span>No. 012 — A Bernie Production</span>
+    <span>PRICE: FREE · EDITION: FINAL</span>
+  </div>
+
+  <h1 class="title">New York <span class="ampersand">&amp;</span> Co.</h1>
+
+  <div class="subtitle-row">
+    <div class="subtitle">A five-day field guide through Manhattan, the Bronx, Queens &amp; Brooklyn — with baseball, bagels, and a buttered slice of Broadway.</div>
+    <div class="stamp">5 Days · 40 Pins · 1 Hyatt</div>
+  </div>
+</header>
+
+<!-- BYLINE -->
+<div class="byline">
+  <div class="byline-item">
+    <span class="label">Dates</span>
+    <span class="value">July 11 – 16, 2026</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Base</span>
+    <span class="value">Hyatt Place Chelsea</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Carrier</span>
+    <span class="value">China Airlines CI12</span>
+  </div>
+  <div class="byline-item">
+    <span class="label">Crew</span>
+    <span class="value">Bernie + Flushing Friend</span>
+  </div>
+</div>
+
+<!-- ========== FIFA WARNING ========== -->
+<section class="container">
+  <div class="section-kicker">Prologue — Heads up</div>
+  <h2 class="section-title">The World Cup ate New York.</h2>
+  <p class="section-intro">
+    7 月的紐約不是往常的紐約。世界盃決賽 7/19 就在河對岸的 MetLife Stadium,整個城市像吸飽咖啡的曼哈頓金融人,處於過度亢奮狀態。
+  </p>
+
+  <div class="alert">
+    <div class="alert-label">Travel Advisory · Priority</div>
+    <h3>為什麼選 7/11–7/16 是對的</h3>
+    <p>
+      這段時間剛好卡在 FIFA 的「升溫期」,但還沒進到瘋狂的決賽週。飯店價格雖然漲,但沒到天花板(決賽當週紐約飯店均價會衝到 <span style="color:var(--mets-orange);font-weight:700">US$624/晚</span>)。<br><br>
+      <strong style="color:var(--mets-orange)">最後一天 7/16 開始</strong>,Fanatics Fest 四天嘉年華在 Javits 會場展開,整個中城會變得更擠更貴。這也是你 5 天行程要見好就收的原因。<br><br>
+      注意:<strong>Rockefeller Center 7/4–7/19 整個園區變成 FIFA Fan Village</strong>,包含 Top of the Rock,人潮會暴多。所以我們用 SUMMIT One Vanderbilt 取代。
+    </p>
+  </div>
+</section>
+
+<!-- ========== THE FLIGHT ========== -->
+<section class="container">
+  <div class="section-kicker">Chapter One — The arrival</div>
+  <h2 class="section-title">Taipei ↦ Kennedy.</h2>
+  <p class="section-intro">
+    CI12 是台北直飛紐約的夜行航班。15 個小時的壓縮時間,抵達時你還是週五晚上。所以 7/11 這天,我們不排任何行程 —— 那叫做「活著就是勝利」。
+  </p>
+
+  <div class="flight-ticket">
+    <div class="flight-main">
+      <div class="flight-header">
+        <span>CHINA AIRLINES · CI 012</span>
+        <span>2026 · JUL · 11</span>
+      </div>
+
+      <div class="flight-route">
+        <div class="flight-airport">
+          <div class="airport-code">TPE</div>
+          <div class="airport-name">Taoyuan · Taipei</div>
+        </div>
+        <div class="plane-path">
+          <svg viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="20" x2="400" y2="20" stroke="#1a1410" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <g transform="translate(200 20)">
+              <path d="M -14 0 L 14 -4 L 14 4 Z M -14 -2 L -10 -2 L -6 -6 L -14 -2 M -14 2 L -10 2 L -6 6 L -14 2" fill="#ff5910" stroke="#1a1410" stroke-width="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="flight-airport">
+          <div class="airport-code">JFK</div>
+          <div class="airport-name">Kennedy · New York</div>
+        </div>
+      </div>
+
+      <div class="flight-details">
+        <div>
+          <div class="detail-label">Departure (TPE)</div>
+          <div class="detail-value">Afternoon · Jul 11</div>
+        </div>
+        <div>
+          <div class="detail-label">Arrival (JFK)</div>
+          <div class="detail-value">~20:00 · Jul 11</div>
+        </div>
+        <div>
+          <div class="detail-label">Duration</div>
+          <div class="detail-value">≈ 15h</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flight-stub">
+      <div>
+        <div class="stub-label">Gate</div>
+        <div class="stub-value">—</div>
+      </div>
+      <div class="barcode"></div>
+      <div>
+        <div class="stub-label">Seat</div>
+        <div class="stub-value">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert" style="border-left-color: var(--mustard);">
+    <div class="alert-label" style="color: var(--mustard)">Arrival Day · Survival Plan</div>
+    <h3>7/11 這天的全部任務:平安抵達飯店</h3>
+    <p>
+      抵達 JFK 後大概會這樣:<strong>過海關 2 小時</strong> → 領行李 30 分鐘 → AirTrain + 地鐵 E 線/C 線到 23 St 約 60 分鐘。大概 <span style="color:var(--mets-orange)">午夜才會 check in</span>。洗澡、倒頭睡,明天才是真正的開始。
+    </p>
+  </div>
+</section>
+
+<!-- ========== THE ITINERARY ========== -->
+<section class="container">
+  <div class="section-kicker">Chapter Two — Five days</div>
+  <h2 class="section-title">The main event.</h2>
+  <p class="section-intro">
+    以 Chelsea 的 Hyatt Place 為中心,每天推向一個不同的方向。不求把整個城市吃乾抹淨,求的是每天結束時還有力氣拍晚餐。
+  </p>
+
+  <div class="day-grid">
+
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-label">
+        <div class="day-number">01</div>
+        <div class="day-date">7 / 12</div>
+        <div class="day-weekday">Sunday</div>
+      </div>
+      <div class="day-content">
+        <h3>Flushing, 朋友, 一場主場日場。</h3>
+        <div class="day-subtitle">The main event. 棒球做開場。</div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-time">10:30</span>
+            <div class="timeline-title">飯店出發 → 7 號線</div>
+            <div class="timeline-desc">F/M 23 St 站 → Times Sq 轉 7 號線東進 Flushing Main St(約 50 分鐘)</div>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">11:30</span>
+            <div class="timeline-title big">與朋友在 Flushing 會合 ✦</div>
+            <div class="timeline-desc">小籠包、台菜、越南河粉、珍奶選一樣。Flushing 的華人食物遠勝 Manhattan Chinatown。</div>
+            <span class="pin-chip">Flushing 128th St</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">12:40</span>
+            <div class="timeline-title">步行/搭車前往 Citi Field</div>
+            <div class="timeline-desc">走路 20 分鐘,或 7 號線一站到 Mets-Willets Point。</div>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">13:40</span>
+            <div class="timeline-title big">Mets vs. Boston Red Sox ⚾</div>
+            <div class="timeline-desc">主場日場,大聯盟經典系列對戰。球票請現在就訂,越晚越貴,好位置會光速消失。</div>
+            <span class="pin-chip">Citi Field</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">~17:00</span>
+            <div class="timeline-title">比賽結束</div>
+            <div class="timeline-desc">約莫 9 局打完是傍晚 5 點左右。</div>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">18:00</span>
+            <div class="timeline-title big">Long Island City · Gantry Plaza</div>
+            <div class="timeline-desc">7 號線到 Court Sq,走到河邊。這是拍曼哈頓天際線最猛的角度,Golden hour 必拍。</div>
+            <span class="pin-chip">Long Island City</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">19:30</span>
+            <div class="timeline-title">晚餐</div>
+            <div class="timeline-desc">LIC 有很多 hipster 餐廳,或搭地鐵回曼哈頓。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-label">
+        <div class="day-number">02</div>
+        <div class="day-date">7 / 13</div>
+        <div class="day-weekday">Monday</div>
+      </div>
+      <div class="day-content">
+        <h3>南向:女神、華爾街、一座網紅橋。</h3>
+        <div class="day-subtitle">下曼哈頓一日遊,golden hour 在 DUMBO 收尾。</div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-time">09:00</span>
+            <div class="timeline-title big">自由女神 + Ellis Island</div>
+            <div class="timeline-desc">從 Battery Park 搭 Statue Cruises 出發。<strong class="warn-text">船票請提前一個月訂</strong>,想上皇冠要更早。</div>
+            <span class="pin-chip">Statue of Liberty</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">13:00</span>
+            <div class="timeline-title">午餐:Stone Street 歷史街區</div>
+            <div class="timeline-desc">鵝卵石路、露天酒館、百年磚牆。</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">14:00</span>
+            <div class="timeline-title">華爾街 + 銅牛 + 無畏少女</div>
+            <div class="timeline-desc">金融區快速打卡。</div>
+            <span class="pin-chip">Wall Street</span>
+            <span class="pin-chip">Charging Bull</span>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">15:00</span>
+            <div class="timeline-title big">911 國家紀念博物館</div>
+            <div class="timeline-desc">預留 2 小時深度參觀。兩座倒映水池在原雙子星地基上。建議線上先買票。</div>
+            <span class="pin-chip">9/11 Memorial</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">17:30</span>
+            <div class="timeline-title">步行 Brooklyn Bridge</div>
+            <div class="timeline-desc">曼哈頓端到布魯克林端約 45 分鐘,邊走邊拍。</div>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">18:30</span>
+            <div class="timeline-title big">DUMBO · Manhattan Bridge View ✦</div>
+            <div class="timeline-desc">Washington Street 和 Water Street 路口。經典磚牆之間的曼哈頓大橋。Golden hour 是此生必拍的一張。</div>
+            <span class="pin-chip">DUMBO Bridge</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">19:30</span>
+            <div class="timeline-title">披薩:Juliana's 或 Grimaldi's</div>
+            <div class="timeline-desc">DUMBO 兩大披薩聖地,隨便選。</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">20:30</span>
+            <div class="timeline-title">布魯克林橋公園看夜景</div>
+            <div class="timeline-desc">對岸的曼哈頓燈火。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-label">
+        <div class="day-number">03</div>
+        <div class="day-date">7 / 14</div>
+        <div class="day-weekday">Tuesday</div>
+      </div>
+      <div class="day-content">
+        <h3>北上:Met、公園、Levain、一齣戲。</h3>
+        <div class="day-subtitle">上城文化一日,晚上交給百老匯。</div>
+
+        <div class="timeline">
+          <div class="timeline-item highlight">
+            <span class="timeline-time">09:30</span>
+            <div class="timeline-title big">大都會藝術博物館 · MET</div>
+            <div class="timeline-desc">提前線上買票可省排隊。挑一兩個常設展深度看,別整館掃。埃及、歐洲繪畫、美國翼是最熱門。</div>
+            <span class="pin-chip">The MET</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">13:00</span>
+            <div class="timeline-title">MET 頂樓酒吧或上東區午餐</div>
+            <div class="timeline-desc">五月至十月頂樓開放,可看中央公園。</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">14:30</span>
+            <div class="timeline-title">中央公園散步 → Bethesda Terrace</div>
+            <div class="timeline-desc">橫穿公園往西走,到畢士大噴泉。電影《愛在午夜希臘時》的場景。</div>
+            <span class="pin-chip">Bethesda Terrace</span>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">15:30</span>
+            <div class="timeline-title big">Levain Bakery 本店朝聖 🍪</div>
+            <div class="timeline-desc">167 W 74th St。排隊半小時,就為了那顆半磅重的 Chocolate Chip Walnut。一顆兩人分剛好,熱的時候吃最神。</div>
+            <span class="pin-chip">Levain 74th St</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">17:00</span>
+            <div class="timeline-title">回飯店小休</div>
+            <div class="timeline-desc">晚上要看戲,先充電。</div>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">19:30</span>
+            <div class="timeline-title big">百老匯 · Broadway Show 🎭</div>
+            <div class="timeline-desc">Lion King / Wicked / Hamilton 是穩的選擇;Stranger Things 和 Maybe Happy Ending 是新話題。<strong class="warn-text">大戲要提前 2–4 週訂</strong>。</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">22:30</span>
+            <div class="timeline-title">Joe's Pizza 宵夜</div>
+            <div class="timeline-desc">Broadway 經典一片披薩。時代廣場附近夜色最瘋狂。</div>
+            <span class="pin-chip">Joe's Pizza</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-label">
+        <div class="day-number">04</div>
+        <div class="day-date">7 / 15</div>
+        <div class="day-weekday">Wednesday</div>
+      </div>
+      <div class="day-content">
+        <h3>中下城吃遍 + 鏡面景觀台收尾。</h3>
+        <div class="day-subtitle">猶太熟食 → 華埠 → 鏡子裡的曼哈頓。</div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-time">09:30</span>
+            <div class="timeline-title">熨斗大廈 + Union Square</div>
+            <div class="timeline-desc">從飯店步行。週三若有 Greenmarket 農夫市集,可以逛。</div>
+            <span class="pin-chip">Flatiron</span>
+            <span class="pin-chip">Union Square</span>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">11:30</span>
+            <div class="timeline-title big">Katz's Delicatessen 🥪</div>
+            <div class="timeline-desc">百年猶太熟食店。當哈利碰上莎莉的那張桌子。<strong>點 Pastrami on Rye</strong>,經典中的經典。</div>
+            <span class="pin-chip">Katz's</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">12:30</span>
+            <div class="timeline-title">Russ &amp; Daughters</div>
+            <div class="timeline-desc">同樣 1914 年的百年老店。Smoked salmon bagel 外帶。</div>
+            <span class="pin-chip">Russ & Daughters</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">14:00</span>
+            <div class="timeline-title">曼哈頓華埠</div>
+            <div class="timeline-desc">Canal St 主幹道,Mei Lai Wah 美麗華喝奶茶,金興小吃店吃點心。</div>
+            <span class="pin-chip">Chinatown</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">16:00</span>
+            <div class="timeline-title">聖巴特里爵 + 洛克菲勒</div>
+            <div class="timeline-desc">看看 FIFA Fan Village 的熱鬧(但別久留)。</div>
+            <span class="pin-chip">St Patrick</span>
+            <span class="pin-chip">Rockefeller</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">17:00</span>
+            <div class="timeline-title">MoMA</div>
+            <div class="timeline-desc">閉館前兩小時票較便宜。星夜、亞維農姑娘、睡蓮都在這裡。</div>
+            <span class="pin-chip">MoMA</span>
+          </div>
+          <div class="timeline-item highlight">
+            <span class="timeline-time">20:00</span>
+            <div class="timeline-title big">SUMMIT One Vanderbilt ✦</div>
+            <div class="timeline-desc">全紐約最誇張的鏡面景觀台。日落時段票是最貴但最值得的。<strong class="warn-text">至少提前 1–2 週訂票</strong>。</div>
+            <span class="pin-chip">SUMMIT</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">21:30</span>
+            <div class="timeline-title">Times Square 夜景收尾</div>
+            <div class="timeline-desc">最後一夜的招牌燈海。無論來過幾次,紐約還是要用時代廣場送走你。</div>
+            <span class="pin-chip">Times Square</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-label">
+        <div class="day-number">05</div>
+        <div class="day-date">7 / 16</div>
+        <div class="day-weekday">Thursday · Optional</div>
+      </div>
+      <div class="day-content">
+        <h3>Chelsea 漫步 + 彈性日。</h3>
+        <div class="day-subtitle">步行範圍的景點 & 沒去到的 PIN。</div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-time">10:00</span>
+            <div class="timeline-title">Shake Shack Madison Square 創始店</div>
+            <div class="timeline-desc">從飯店走路 10 分鐘。排隊要有心理準備。</div>
+            <span class="pin-chip">Shake Shack OG</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">11:30</span>
+            <div class="timeline-title">High Line · 高架公園</div>
+            <div class="timeline-desc">從 23 St 入口上去,往南走到 Gansevoort St 下去。鐵道改造的綠廊。</div>
+            <span class="pin-chip">High Line</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">13:00</span>
+            <div class="timeline-title">Chelsea Market</div>
+            <div class="timeline-desc">舊餅乾工廠改造的美食街。Cull &amp; Pistol 吃龍蝦堡(替代原本 PIN 太遠的 Jordan Lobster)。</div>
+            <span class="pin-chip">Chelsea Market</span>
+            <span class="pin-chip">Cull & Pistol</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">15:00</span>
+            <div class="timeline-title">Vessel + Hudson Yards</div>
+            <div class="timeline-desc">Vessel 登頂暫停了,看外觀拍拍照就好。Hudson Yards 有商場。</div>
+            <span class="pin-chip">Vessel</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">17:00</span>
+            <div class="timeline-title">Washington Square Park + Greenwich Village</div>
+            <div class="timeline-desc">NYU 校園旁,街頭表演、噴水池、凱旋門。</div>
+            <span class="pin-chip">Washington Sq</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">19:00</span>
+            <div class="timeline-title">晚餐 + 打包回飯店</div>
+            <div class="timeline-desc">可以去 Bryant Park 看看夏夜戶外電影。</div>
+            <span class="pin-chip">Bryant Park</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ornament">· ◆ ·</div>
+
+<!-- ========== THE GAME ========== -->
+<section class="container">
+  <div class="section-kicker">Feature — The headline event</div>
+  <h2 class="section-title">Mets vs. Red Sox.</h2>
+  <p class="section-intro">
+    這是整趟旅行的 centerpiece。兩個傳統勁敵在 Citi Field 主場日場,而且朋友就住在旁邊。
+    如果有什麼叫 perfect day,這就是。
+  </p>
+
+  <div class="game-card">
+    <div class="game-label">★ The Main Event · Sunday Afternoon</div>
+    <h3>New York Mets<br>vs. Boston Red Sox</h3>
+
+    <div class="game-info">
+      <div class="info-item">
+        <div class="info-label">Date</div>
+        <div class="info-value">Jul 12 · Sun</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">First Pitch</div>
+        <div class="info-value">1:40 PM</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Venue</div>
+        <div class="info-value">Citi Field · Flushing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BOOK NOW ========== -->
+<section class="container">
+  <div class="section-kicker">Chapter Three — To-do list</div>
+  <h2 class="section-title">訂票清單 · 輕重緩急。</h2>
+  <p class="section-intro">
+    FIFA 讓 7 月的紐約進入搶購模式。以下按緊急度排列,越早訂越安心。
+  </p>
+
+  <div class="checklist">
+    <div class="checklist-item">
+      <div class="check-num">01</div>
+      <div>
+        <div class="check-title">Mets vs. Red Sox 7/12 球票</div>
+        <span class="check-desc">熱門系列賽。MLB.com/mets 或 SeatGeek。好位置秒光。</span>
+      </div>
+      <div class="urgency high">Now</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">02</div>
+      <div>
+        <div class="check-title">Hyatt Place Chelsea 飯店</div>
+        <span class="check-desc">FIFA 期間供需吃緊,越晚越貴。</span>
+      </div>
+      <div class="urgency high">Now</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">03</div>
+      <div>
+        <div class="check-title">華航 CI12 機票</div>
+        <span class="check-desc">台北直飛 JFK,確認實際起降時間。</span>
+      </div>
+      <div class="urgency high">Now</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">04</div>
+      <div>
+        <div class="check-title">自由女神 + Ellis Island 船票</div>
+        <span class="check-desc">官網 Statue Cruises,提前一個月。想登皇冠更早。</span>
+      </div>
+      <div class="urgency med">1 Month</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">05</div>
+      <div>
+        <div class="check-title">百老匯演出票</div>
+        <span class="check-desc">Hamilton / Wicked / Lion King 熱門,需 2–4 週。或現場 TKTS 當日半價碰運氣。</span>
+      </div>
+      <div class="urgency med">2–4 Weeks</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">06</div>
+      <div>
+        <div class="check-title">SUMMIT One Vanderbilt · 日落場</div>
+        <span class="check-desc">日落時段最熱門,提前 1–2 週。</span>
+      </div>
+      <div class="urgency med">2 Weeks</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">07</div>
+      <div>
+        <div class="check-title">911 紀念博物館 · 時段票</div>
+        <span class="check-desc">指定進場時段可省排隊。</span>
+      </div>
+      <div class="urgency low">1 Week</div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-num">08</div>
+      <div>
+        <div class="check-title">MET 大都會博物館</div>
+        <span class="check-desc">線上買票省排隊即可。</span>
+      </div>
+      <div class="urgency low">Day Before</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BROADWAY ========== -->
+<section class="container">
+  <div class="section-kicker">The Theater — Pick one</div>
+  <h2 class="section-title">百老匯,挑一齣。</h2>
+  <p class="section-intro">
+    7 月的百老匯沒有淡季。以下按「不會出錯」的順序推薦。
+  </p>
+
+  <div class="list-box">
+    <div class="list-header">SHOWS WORTH YOUR EVENING · JULY 2026</div>
+    <div class="list-row">
+      <div class="name">The Lion King</div>
+      <div class="desc">視覺奇觀殿堂級,語言門檻最低,非英語母語觀眾首選。</div>
+      <div class="badge must">Safe Bet</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Wicked</div>
+      <div class="desc">電影版帶起的新熱潮,女巫前傳永不退流行。</div>
+      <div class="badge must">Safe Bet</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Hamilton</div>
+      <div class="desc">10 週年紀念年,Lin-Manuel Miranda 的現代神作。</div>
+      <div class="badge">Classic</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Stranger Things: The First Shadow</div>
+      <div class="desc">影集前傳舞台劇版,票價親民,話題滿點。</div>
+      <div class="badge">New</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Maybe Happy Ending</div>
+      <div class="desc">2025 東尼獎大贏家,原創音樂劇的近期巔峰。</div>
+      <div class="badge">New</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CUT LIST ========== -->
+<section class="container">
+  <div class="section-kicker">Chapter Four — Edited out</div>
+  <h2 class="section-title">這些點我們砍了。</h2>
+  <p class="section-intro">
+    原本 PIN 上的景點,不是每個都值得為它花時間。以下是被編輯掉的清單,附理由。
+  </p>
+
+  <div class="list-box">
+    <div class="list-header">PINS ON THE CUTTING ROOM FLOOR</div>
+    <div class="list-row">
+      <div class="name">康尼島 · Coney Island</div>
+      <div class="desc">單程 1 小時,半天就沒了,除非是復古遊樂園狂熱份子。</div>
+      <div class="badge cut">Too Far</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Jordan Lobster Farms</div>
+      <div class="desc">在長島 Long Beach,沒車到不了。已用 Chelsea Market 的 Cull &amp; Pistol 取代。</div>
+      <div class="badge cut">Replaced</div>
+    </div>
+    <div class="list-row">
+      <div class="name">聯合國總部</div>
+      <div class="desc">要預約導覽,可看性有限。從外面拍就好。</div>
+      <div class="badge cut">Skip</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Peter Luger Steak House</div>
+      <div class="desc">在 Williamsburg,專程一趟只為牛排 CP 值低。</div>
+      <div class="badge cut">Optional</div>
+    </div>
+    <div class="list-row">
+      <div class="name">Vessel 登頂</div>
+      <div class="desc">因安全問題暫停登頂,看外觀就好。</div>
+      <div class="badge cut">Closed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SURVIVAL TIPS ========== -->
+<section class="container">
+  <div class="section-kicker">Field Manual — Survival kit</div>
+  <h2 class="section-title">現場求生指南。</h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="card-num">01</div>
+      <h4>地鐵用 OMNY</h4>
+      <p>直接信用卡或手機感應進站,一週自動上限 $34,超過免費。不用買 MetroCard 實體卡。</p>
+    </div>
+    <div class="info-card">
+      <div class="card-num">02</div>
+      <h4>7 月天氣</h4>
+      <p>28–33°C 悶熱,午後常雷陣雨。帶輕便雨傘,薄長袖抗冷氣。</p>
+    </div>
+    <div class="info-card">
+      <div class="card-num">03</div>
+      <h4>小費文化</h4>
+      <p>餐廳 18–22%,計程車 15–20%。標價通常不含 8.875% 稅。</p>
+    </div>
+    <div class="info-card">
+      <div class="card-num">04</div>
+      <h4>JFK → Chelsea</h4>
+      <p>AirTrain → E 線 → 轉 C/E 到 23 St,約 1 小時,$10 以內。比計程車便宜 10 倍。</p>
+    </div>
+    <div class="info-card">
+      <div class="card-num">05</div>
+      <h4>Levain 排隊</h4>
+      <p>下午 3–5 點排最久,早上 10 點前最快。一顆餅乾 6oz,兩人分一顆剛好。</p>
+    </div>
+    <div class="info-card">
+      <div class="card-num">06</div>
+      <h4>DUMBO 拍照</h4>
+      <p>Washington St 和 Water St 路口。Golden hour 日落前 1 小時最美,小心過馬路。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== THE PINS ========== -->
+<section class="container">
+  <div class="section-kicker">Appendix — The full map</div>
+  <h2 class="section-title">40 顆 PIN。</h2>
+  <p class="section-intro">
+    你 Google My Maps 上的所有 PIN,我都編輯過並分類。這張地圖是可點的。
+  </p>
+
+  <div class="map-embed">
+    <iframe
+      src="https://www.google.com/maps/d/embed?mid=1KNNY5a83GlecRvEm4Elgv7jlkLKdeiM&ehbc=2E312F"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.15em;color:var(--ink-soft);margin-top:20px;">
+    ◈ 如果看不到 PIN,請在 My Maps 把分享設為「知道連結的任何人」
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">New York &amp; Co.</div>
+  <div class="footer-sub">— Field notes from July, 2026 —</div>
+
+  <p style="font-family:'Fraunces',serif;font-style:italic;max-width:500px;margin:0 auto;opacity:0.8;">
+    行程規劃文件。隨時更新,隨時推翻。<br>
+    旅行的樂趣一半在計畫,一半在脫稿演出。
+  </p>
+
+  <div class="meta">
+    Vol. 01 · No. 012 · Bernie's Dispatch<br>
+    Hyatt Place Chelsea · July 11 – 16, 2026<br>
+    Last revised: April 2026
+  </div>
+</footer>
+
+</body>
+</html>
