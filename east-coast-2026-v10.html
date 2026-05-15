@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bernie 美東 17 天 · East Coast 2026 · v10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Bebas+Neue&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0e27; --paper: #f4ede3; --cream: #fffdf7;
+  --red: #c1272d; --gold: #c9a961; --navy: #1a3a52;
+  --rust: #b85c38; --sage: #6b8e62; --magic-gold: #d4af37;
+  --shadow: rgba(10,14,39,0.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans TC', 'Fraunces', serif;
+  background: var(--paper); color: var(--ink);
+  line-height: 1.7; overflow-x: hidden;
+}
+main { position: relative; }
+img { max-width: 100%; display: block; }
+
+/* HERO */
+.hero {
+  min-height: 100vh; padding: 2rem 1.5rem;
+  display: flex; flex-direction: column;
+  position: relative; background: var(--paper);
+  border-bottom: 2px solid var(--ink); overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/China_Airlines_Boeing_777-300ER_TPE.JPG/1600px-China_Airlines_Boeing_777-300ER_TPE.JPG');
+  background-size: cover; background-position: center;
+  opacity: 0.2; filter: sepia(0.2);
+}
+.hero-top, .hero-center, .hero-stats, .flight-map { position: relative; z-index: 2; }
+.hero-top {
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; margin-bottom: 2rem;
+}
+.hero-center { flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.hero-eyebrow {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.3em; color: var(--red);
+  text-transform: uppercase; padding: 0.5rem 1rem;
+  border: 1px solid var(--red); margin: 0 auto 1.5rem; background: var(--cream);
+}
+.hero-title {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: clamp(3rem, 16vw, 9rem); line-height: 0.85;
+  letter-spacing: -0.04em; font-style: italic;
+}
+.hero-title-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  letter-spacing: 0.2em; margin-top: 1rem; color: var(--navy);
+}
+.hero-tagline {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.3rem); color: var(--rust);
+  margin-top: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: 3rem; }
+.stat { background: var(--cream); border: 1px solid var(--ink); padding: 1rem; text-align: center; }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.3rem; }
+.stat-value { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; }
+.stat-value strong { font-size: 1.4rem; font-style: italic; }
+
+/* 地圖 */
+.flight-map { margin: 2rem auto 0; max-width: 800px; width: 100%; background: rgba(255,253,247,0.85); border: 1px solid var(--ink); padding: 1rem; }
+.flight-map-title { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--navy); text-transform: uppercase; text-align: center; margin-bottom: 0.5rem; }
+.flight-map svg { width: 100%; height: auto; }
+.map-legend { display: flex; justify-content: center; gap: 1rem; margin-top: 0.8rem; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--navy); }
+.legend-item { display: flex; align-items: center; gap: 0.3rem; }
+.legend-flight { color: var(--red); }
+.legend-drive { color: var(--rust); }
+
+.stage-map { background: linear-gradient(180deg, #d4e6f1 0%, #e8f0f5 100%); border: 1px solid var(--ink); margin-bottom: 1rem; padding: 0.8rem; }
+.stage-map-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--navy); text-transform: uppercase; margin-bottom: 0.5rem; text-align: center; }
+.stage-map svg { width: 100%; height: auto; max-height: 220px; }
+
+/* 跑馬燈 */
+.marquee { background: var(--ink); color: var(--cream); overflow: hidden; padding: 1rem 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); white-space: nowrap; }
+.marquee-inner { display: inline-block; animation: scroll 35s linear infinite; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.3em; }
+.marquee-inner span { margin: 0 2rem; color: var(--gold); }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* 通用 */
+.section { padding: 4rem 1.5rem; max-width: 760px; margin: 0 auto; }
+.section-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--red); margin-bottom: 0.5rem; }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 2.5rem; font-style: italic; line-height: 1; }
+.section-title em { font-style: normal; color: var(--red); }
+
+/* 航班 */
+.flights { background: var(--ink); color: var(--cream); padding: 3rem 1.5rem; }
+.flights .section-num { color: var(--gold); }
+.flights .section-title { color: var(--cream); }
+.flights .section-title em { color: var(--gold); }
+.flight-photo { width: 100%; height: 280px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/China_Airlines_Boeing_777-300ER_TPE.JPG/1200px-China_Airlines_Boeing_777-300ER_TPE.JPG'); background-size: cover; background-position: center; border: 1px solid var(--gold); margin: 1rem 0 2rem; position: relative; }
+.flight-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(10,14,39,0.7) 100%); }
+.flight-photo-caption { position: absolute; bottom: 1rem; left: 1rem; z-index: 2; color: var(--cream); font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.1em; }
+.flight { border: 1px solid var(--cream); padding: 1.2rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; background: rgba(255,253,247,0.03); }
+.flight-port { text-align: center; }
+.flight-port-code { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; }
+.flight-port-time { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--gold); margin-top: 0.4rem; }
+.flight-no { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--gold); text-align: center; margin-bottom: 0.5rem; letter-spacing: 0.15em; }
+.flight-arrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); text-align: center; }
+
+/* 團員 */
+.crew { background: var(--navy); color: var(--cream); padding: 3rem 1.5rem; }
+.crew .section-num { color: var(--gold); }
+.crew .section-title { color: var(--cream); }
+.crew .section-title em { color: var(--gold); }
+.crew-leg { background: rgba(255,253,247,0.05); border: 1px solid var(--cream); padding: 1.5rem; margin-bottom: 1rem; }
+.crew-leg-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.5rem; }
+.crew-leg-route { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+.crew-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+.crew-grid.two { grid-template-columns: repeat(2, 1fr); }
+.person-tile { border: 1px solid rgba(255,253,247,0.5); padding: 1rem 0.5rem; text-align: center; background: rgba(255,253,247,0.03); }
+.person-tile .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; color: var(--gold); }
+.person-tile .label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--cream); margin-top: 0.4rem; text-transform: uppercase; }
+
+/* 住宿 */
+.lodging-list { list-style: none; }
+.lodging-list li { border-left: 4px solid var(--red); padding: 1rem 1.2rem; margin-bottom: 0.8rem; background: var(--cream); box-shadow: 2px 2px 0 var(--shadow); }
+.lodging-name { font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; font-size: 1.15rem; }
+.lodging-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--navy); margin-top: 0.3rem; letter-spacing: 0.05em; }
+
+/* Day Card */
+.day-card { background: var(--cream); border: 1px solid var(--ink); margin-bottom: 1.5rem; overflow: hidden; box-shadow: 4px 4px 0 var(--shadow); transition: transform 0.25s ease; }
+.day-card:hover { transform: translateY(-3px); box-shadow: 6px 6px 0 var(--shadow); }
+.day-card-image { height: 200px; background-size: cover; background-position: center; position: relative; border-bottom: 1px solid var(--ink); background-color: var(--navy); display: flex; align-items: center; justify-content: center; }
+.day-card-image-emoji { font-size: 4rem; opacity: 0.85; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); position: relative; z-index: 1; }
+.day-card-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(10,14,39,0.6) 100%); }
+.day-card-image-label { position: absolute; bottom: 1rem; left: 1rem; z-index: 2; color: var(--cream); font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 0.05em; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+.day-card-body { padding: 1.5rem; }
+.day-card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--ink); }
+.day-card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--red); font-weight: 700; }
+.day-card-date { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 900; font-style: italic; }
+.day-card-theme { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; color: var(--navy); margin-bottom: 1rem; font-weight: 600; }
+.day-intro { font-family: 'Fraunces', serif; font-style: italic; color: var(--rust); background: rgba(184, 92, 56, 0.08); padding: 1rem; margin: 1rem 0; border-left: 3px solid var(--rust); font-size: 0.95rem; line-height: 1.7; }
+.timeline { list-style: none; }
+.timeline li { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px dotted rgba(10,14,39,0.15); font-size: 0.93rem; }
+.timeline li:last-child { border-bottom: none; }
+.timeline-time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; color: var(--rust); white-space: nowrap; padding-top: 0.15rem; }
+.timeline-event strong { color: var(--red); }
+
+/* 高亮卡 */
+.day-card.highlight .day-card-body { background: var(--red); color: var(--cream); }
+.day-card.highlight .day-card-num, .day-card.highlight .day-card-date, .day-card.highlight .day-card-theme, .day-card.highlight .timeline-time { color: var(--cream); }
+.day-card.highlight .timeline-event strong { color: var(--gold); }
+.day-card.highlight .day-card-header { border-color: rgba(255,253,247,0.3); }
+.day-card.highlight .timeline li { border-color: rgba(255,253,247,0.2); }
+.day-card.highlight .day-intro { background: rgba(255,253,247,0.1); border-left-color: var(--gold); color: var(--cream); }
+.highlight-badge { display: inline-block; background: var(--cream); color: var(--red); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; padding: 0.3rem 0.6rem; margin-bottom: 0.8rem; font-weight: 700; }
+
+/* 哈利波特 */
+.harry-section { background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 50%, #4a2c5a 100%); color: var(--magic-gold); padding: 4rem 1.5rem; position: relative; overflow: hidden; }
+.magic-particle { position: absolute; width: 4px; height: 4px; background: var(--magic-gold); border-radius: 50%; pointer-events: none; box-shadow: 0 0 10px var(--magic-gold), 0 0 20px var(--magic-gold); animation: floatParticle 8s infinite ease-in-out; }
+@keyframes floatParticle { 0%, 100% { transform: translate(0, 0) scale(0); opacity: 0; } 10% { transform: translate(10px, -10px) scale(1); opacity: 1; } 50% { transform: translate(30px, -50px) scale(1.5); opacity: 0.8; } 90% { transform: translate(60px, -100px) scale(0.5); opacity: 0.3; } }
+.harry-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+.harry-title { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 9vw, 4.5rem); font-weight: 900; text-align: center; letter-spacing: 0.05em; margin-bottom: 0.5rem; text-shadow: 0 0 30px rgba(212,175,55,0.5); animation: glowPulse 3s ease-in-out infinite; }
+@keyframes glowPulse { 0%, 100% { text-shadow: 0 0 30px rgba(212,175,55,0.5); } 50% { text-shadow: 0 0 50px rgba(212,175,55,0.8); } }
+.harry-subtitle { font-family: 'Fraunces', serif; font-style: italic; text-align: center; color: #c9b896; margin-bottom: 2rem; font-size: 1rem; }
+.harry-details { background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.3); padding: 1.5rem; margin: 1.5rem 0; }
+.harry-details h4 { font-family: 'Cinzel', serif; color: var(--magic-gold); font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 0.1em; }
+.harry-details p, .harry-details li { color: #d8c89c; font-family: 'Fraunces', serif; font-size: 0.95rem; line-height: 1.8; }
+.harry-details ul { list-style: none; margin-top: 0.5rem; }
+.harry-details li { padding: 0.3rem 0; }
+.harry-details li::before { content: '⚡'; margin-right: 0.5rem; color: var(--magic-gold); }
+
+/* 預算 */
+.budget { background: var(--gold); color: var(--ink); padding: 3rem 1.5rem; }
+.budget-table { background: var(--cream); border: 1px solid var(--ink); padding: 1.5rem; margin-top: 2rem; }
+.budget-row { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px dashed rgba(10,14,39,0.2); font-size: 0.95rem; gap: 1rem; }
+.budget-row:last-child { border-bottom: none; padding-top: 1.2rem; margin-top: 0.5rem; border-top: 2px solid var(--ink); font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 900; font-style: italic; }
+.budget-amount { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--red); white-space: nowrap; }
+.budget-note { font-family: 'Fraunces', serif; font-style: italic; font-size: 0.85rem; color: var(--navy); margin-top: 1rem; text-align: center; }
+
+/* 訂票 */
+.todo { background: var(--ink); color: var(--cream); padding: 3rem 1.5rem; }
+.todo .section-num { color: var(--gold); }
+.todo .section-title { color: var(--cream); }
+.todo .section-title em { color: var(--red); }
+.todo-list { list-style: none; margin-top: 2rem; }
+.todo-list li { padding: 1rem 0; border-bottom: 1px solid rgba(255,253,247,0.2); display: flex; gap: 1rem; align-items: flex-start; }
+.todo-list li:last-child { border-bottom: none; }
+.todo-priority { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; background: var(--cream); color: var(--ink); padding: 0.3rem 0.6rem; letter-spacing: 0.1em; white-space: nowrap; min-width: 60px; text-align: center; }
+.todo-priority.urgent { background: var(--red); color: var(--cream); }
+.todo-priority.done { background: var(--sage); color: var(--cream); }
+
+footer { background: var(--ink); color: var(--cream); padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--gold); }
+footer .signoff { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; color: var(--gold); margin-bottom: 1rem; }
+footer .meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6; }
+
+@media (min-width: 768px) {
+  .hero-stats { grid-template-columns: repeat(4, 1fr); }
+  .section { padding: 5rem 2rem; }
+  .day-card-image { height: 240px; }
+}
+
+.day-card { opacity: 0; transform: translateY(20px); }
+.day-card.visible { opacity: 1; transform: translateY(0); transition: all 0.6s ease; }
+</style>
+</head>
+<body>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-top">
+    <div>BERNIE'S ATLAS · EST 2026</div>
+    <div>VOL. IX</div>
+  </div>
+  <div class="hero-center">
+    <div class="hero-eyebrow">East Coast Expedition · 17 Days</div>
+    <h1 class="hero-title">East Coast</h1>
+    <div class="hero-title-sub">2026 · SUMMER · USA</div>
+    <p class="hero-tagline">"From the Capitol's calm to Citi Field's roar."<br>從華府的靜謐，到大都會的歡呼。</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-label">Depart</div><div class="stat-value"><strong>07.11</strong></div></div>
+    <div class="stat"><div class="stat-label">Return</div><div class="stat-value"><strong>07.27</strong></div></div>
+    <div class="stat"><div class="stat-label">DC 段</div><div class="stat-value"><strong>7</strong> 人</div></div>
+    <div class="stat"><div class="stat-label">NYC 段</div><div class="stat-value"><strong>4</strong> 人</div></div>
+  </div>
+
+  <!-- 大世界地圖 -->
+  <div class="flight-map">
+    <div class="flight-map-title">✈ THE JOURNEY · TPE → SEA → IAD → DC → NYC → TPE ✈</div>
+    <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(180deg, #d4e6f1 0%, #aed6e7 50%, #d4e6f1 100%);">
+      <defs>
+        <pattern id="ocean-wave" x="0" y="0" width="60" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 0,10 Q 15,5 30,10 T 60,10" stroke="#a5cfe3" stroke-width="0.5" fill="none" opacity="0.4"/>
+        </pattern>
+        <pattern id="land-texture" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+          <rect width="8" height="8" fill="#e8dcc4"/>
+          <circle cx="2" cy="2" r="0.3" fill="#c9a961" opacity="0.4"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="1000" height="500" fill="url(#ocean-wave)"/>
+      <line x1="0" y1="250" x2="1000" y2="250" stroke="#1a3a52" stroke-width="0.3" stroke-dasharray="2,4" opacity="0.3"/>
+      <path d="M 0,80 L 120,70 Q 180,90 200,150 L 220,200 Q 200,260 150,290 L 80,310 Q 30,290 0,260 Z" fill="url(#land-texture)" stroke="#8b7355" stroke-width="0.8"/>
+      <ellipse cx="195" cy="220" rx="18" ry="6" fill="url(#land-texture)" stroke="#8b7355" stroke-width="0.5" transform="rotate(-15 195 220)"/>
+      <ellipse cx="155" cy="285" rx="6" ry="14" fill="#c1272d" stroke="#8b7355" stroke-width="0.8"/>
+      <path d="M 580,80 L 700,75 Q 780,80 850,100 L 920,130 Q 960,180 970,240 L 960,310 Q 920,380 850,400 L 750,410 Q 680,400 620,380 L 580,340 Q 560,280 565,200 Q 570,130 580,80 Z" fill="url(#land-texture)" stroke="#8b7355" stroke-width="1"/>
+      <path d="M 580,80 L 540,90 Q 510,100 500,120 L 530,130 L 570,110 Z" fill="url(#land-texture)" stroke="#8b7355" stroke-width="0.8"/>
+      <text x="400" y="260" text-anchor="middle" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; fill: #1a3a52; opacity: 0.5; letter-spacing: 0.3em;">PACIFIC OCEAN</text>
+      <path id="flight-path-1" d="M 160,290 Q 380,100 660,150" fill="none" stroke="#c1272d" stroke-width="2" stroke-dasharray="6,4">
+        <animate attributeName="stroke-dashoffset" values="0;-200" dur="20s" repeatCount="indefinite"/>
+      </path>
+      <path id="flight-path-2" d="M 660,150 Q 780,180 880,220" fill="none" stroke="#c1272d" stroke-width="2" stroke-dasharray="6,4">
+        <animate attributeName="stroke-dashoffset" values="0;-200" dur="20s" repeatCount="indefinite"/>
+      </path>
+      <path d="M 880,220 Q 910,200 935,185" fill="none" stroke="#c9a961" stroke-width="3"/>
+      <path d="M 935,185 Q 700,350 400,400 Q 200,400 155,290" fill="none" stroke="#c1272d" stroke-width="2" stroke-dasharray="3,5" opacity="0.5">
+        <animate attributeName="stroke-dashoffset" values="0;-200" dur="20s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="160" cy="290" r="8" fill="#c1272d"><animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="160" y="320" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">TPE 台北</text>
+      <circle cx="660" cy="150" r="7" fill="#c1272d"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="660" y="135" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">SEA 西雅圖</text>
+      <circle cx="880" cy="220" r="7" fill="#c1272d"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="880" y="248" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">IAD 華盛頓</text>
+      <circle cx="935" cy="185" r="8" fill="#c9a961"><animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="945" y="180" text-anchor="start" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">JFK 紐約</text>
+      <g><text style="font-size: 22px;"><animateMotion dur="8s" repeatCount="indefinite" rotate="auto"><mpath href="#flight-path-1"/></animateMotion>✈</text></g>
+      <g><text style="font-size: 18px;"><animateMotion dur="6s" repeatCount="indefinite" rotate="auto" begin="2s"><mpath href="#flight-path-2"/></animateMotion>✈</text></g>
+    </svg>
+    <div class="map-legend">
+      <div class="legend-item legend-flight">···· ✈ 飛航</div>
+      <div class="legend-item legend-drive">━━ 🚗 開車</div>
+      <div class="legend-item" style="color: var(--gold);">● JFK 終點</div>
+    </div>
+  </div>
+</section>
+
+<!-- 倒數計時 -->
+<section style="background: var(--ink); color: var(--cream); padding: 2rem 1.5rem; text-align: center; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold);">
+  <div style="max-width: 760px; margin: 0 auto;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 0.8rem;">⏰ COUNTDOWN TO TAKEOFF</div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; max-width: 500px; margin: 0 auto;">
+      <div style="background: rgba(255,253,247,0.08); border: 1px solid var(--gold); padding: 1rem 0.5rem;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; color: var(--gold);" id="cd-days">--</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream); margin-top: 0.3rem; text-transform: uppercase;">天</div>
+      </div>
+      <div style="background: rgba(255,253,247,0.08); border: 1px solid var(--gold); padding: 1rem 0.5rem;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; color: var(--gold);" id="cd-hrs">--</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream); margin-top: 0.3rem; text-transform: uppercase;">時</div>
+      </div>
+      <div style="background: rgba(255,253,247,0.08); border: 1px solid var(--gold); padding: 1rem 0.5rem;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; color: var(--gold);" id="cd-mins">--</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream); margin-top: 0.3rem; text-transform: uppercase;">分</div>
+      </div>
+      <div style="background: rgba(255,253,247,0.08); border: 1px solid var(--gold); padding: 1rem 0.5rem;">
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; color: var(--gold);" id="cd-secs">--</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream); margin-top: 0.3rem; text-transform: uppercase;">秒</div>
+      </div>
+    </div>
+    <p style="font-family: 'Fraunces', serif; font-style: italic; color: var(--gold); margin-top: 1rem; font-size: 0.9rem;">CI 0022 · 07/11/2026 23:30 TPE 起飛</p>
+  </div>
+</section>
+
+<!-- 跑馬燈 -->
+<div class="marquee">
+  <div class="marquee-inner">
+    ⚾ SHOHEI OHTANI <span>·</span> 🪄 HARRY POTTER <span>·</span> 🦁 LION KING <span>·</span> 🐎 AMISH COUNTRY <span>·</span> 🦞 JORDAN LOBSTER <span>·</span> 🏛️ SMITHSONIAN <span>·</span> 🦀 BALTIMORE CRAB <span>·</span> 🗽 LIBERTY ISLAND <span>·</span>
+    ⚾ SHOHEI OHTANI <span>·</span> 🪄 HARRY POTTER <span>·</span> 🦁 LION KING <span>·</span> 🐎 AMISH COUNTRY <span>·</span>
+  </div>
+</div>
+
+<!-- IAD 抵達歡迎 -->
+<section style="background: linear-gradient(135deg, #1a3a52 0%, #2c5471 50%, #1a3a52 100%); color: var(--cream); padding: 4rem 1.5rem;">
+  <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 1rem;">FIRST TOUCHDOWN · 07/12 06:39 EST</div>
+    <svg viewBox="0 0 600 200" style="width: 100%; max-width: 500px; margin: 1rem auto; display: block;">
+      <ellipse cx="100" cy="50" rx="40" ry="8" fill="#fffdf7" opacity="0.3"/>
+      <ellipse cx="500" cy="40" rx="50" ry="10" fill="#fffdf7" opacity="0.3"/>
+      <path d="M 50,140 Q 300,80 550,140" fill="none" stroke="#c9a961" stroke-width="4"/>
+      <path d="M 50,140 Q 300,80 550,140 L 550,160 Q 300,100 50,160 Z" fill="#fffdf7" opacity="0.95" stroke="#c9a961" stroke-width="2"/>
+      <line x1="80" y1="155" x2="80" y2="180" stroke="#c9a961" stroke-width="2"/>
+      <line x1="520" y1="155" x2="520" y2="180" stroke="#c9a961" stroke-width="2"/>
+      <text x="380" y="105" style="font-size: 36px;" transform="rotate(15 380 100)">
+        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>✈️
+      </text>
+      <line x1="0" y1="180" x2="600" y2="180" stroke="#c9a961" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <h2 style="font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; margin: 1rem 0;">
+      Welcome to <span style="color: var(--gold);">IAD</span>
+    </h2>
+    <p style="font-family: 'Fraunces', serif; font-style: italic; color: var(--gold); margin-bottom: 1.5rem;">Washington Dulles International Airport</p>
+    <div style="background: rgba(255,253,247,0.08); border: 1px solid var(--gold); padding: 1.5rem; margin: 1.5rem auto; max-width: 500px; text-align: left;">
+      <p style="font-family: 'Fraunces', serif; line-height: 1.8;">
+        <strong style="color: var(--gold);">飛碟航廈的浪漫</strong><br>
+        IAD 主航廈是 1962 年由芬蘭裔美國建築大師 <em>Eero Saarinen</em> 設計，懸吊式弧形屋頂像鳥兒展翅。
+      </p>
+      <p style="font-family: 'Fraunces', serif; line-height: 1.8; margin-top: 1rem;">
+        <strong style="color: var(--gold);">桃園機場第一航廈的母親</strong><br>
+        桃園機場第一航廈當年就是模仿這座 IAD 主航廈蓋的，造型一模一樣！一下飛機會有種「咦怎麼好熟」的既視感 🤓
+      </p>
+    </div>
+    <p style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.3em; color: var(--gold);">姑姑開車 30 分鐘 → 🏡 Gaithersburg</p>
+  </div>
+</section>
+
+<!-- 航班 -->
+<section class="flights">
+<div style="max-width:760px; margin: 0 auto;">
+  <div class="section-num">§ 01 · FLIGHTS</div>
+  <h2 class="section-title">Up in the <em>air</em></h2>
+  <p style="font-family:'Fraunces',serif; font-style:italic; color: var(--gold); margin-bottom: 1rem;">訂位代號 FDUJ68</p>
+  <div class="flight-photo">
+    <div class="flight-photo-caption">CI 777-300ER · 跨太平洋的紅梅花</div>
+  </div>
+  <div class="flight">
+    <div class="flight-port"><div class="flight-port-code">TPE</div><div class="flight-port-time">07/11 · 23:30</div></div>
+    <div><div class="flight-no">CI 0022</div><div class="flight-arrow">✈ ·····→</div></div>
+    <div class="flight-port"><div class="flight-port-code">SEA</div><div class="flight-port-time">07/11 · 19:45</div></div>
+  </div>
+  <div class="flight">
+    <div class="flight-port"><div class="flight-port-code">SEA</div><div class="flight-port-time">07/11 · 22:43</div></div>
+    <div><div class="flight-no">AS 0367</div><div class="flight-arrow">✈ ·····→</div></div>
+    <div class="flight-port"><div class="flight-port-code">IAD</div><div class="flight-port-time">07/12 · 06:39</div></div>
+  </div>
+  <div class="flight">
+    <div class="flight-port"><div class="flight-port-code">JFK</div><div class="flight-port-time">07/26 · 01:15</div></div>
+    <div><div class="flight-no">CI 0011</div><div class="flight-arrow">✈ ·····→</div></div>
+    <div class="flight-port"><div class="flight-port-code">TPE</div><div class="flight-port-time">07/27 · 05:20</div></div>
+  </div>
+</div>
+</section>
+
+<!-- 團員 -->
+<section class="crew">
+<div style="max-width:760px; margin: 0 auto;">
+  <div class="section-num">§ 02 · THE CREW</div>
+  <h2 class="section-title">Two <em>legs</em>, one trip</h2>
+  <div style="margin-top: 2rem;">
+    <div class="crew-leg">
+      <div class="crew-leg-label">⬡ Leg 01 · 7/12 - 7/19</div>
+      <div class="crew-leg-route">Washington DC · Baltimore · Lancaster</div>
+      <div class="crew-grid">
+        <div class="person-tile"><div class="num">3</div><div class="label">長輩</div></div>
+        <div class="person-tile"><div class="num">3</div><div class="label">成人</div></div>
+        <div class="person-tile"><div class="num">1</div><div class="label">10y 小孩</div></div>
+      </div>
+      <p style="margin-top: 1rem; font-style: italic; font-family: 'Fraunces', serif; color: var(--gold);">7 人 · 兩台車 · 姑姑當地嚮導</p>
+    </div>
+    <div class="crew-leg">
+      <div class="crew-leg-label">⬡ Leg 02 · 7/21 - 7/25</div>
+      <div class="crew-leg-route">New York City · Flushing</div>
+      <div class="crew-grid two">
+        <div class="person-tile"><div class="num">3</div><div class="label">成人</div></div>
+        <div class="person-tile"><div class="num">1</div><div class="label">10y 小孩</div></div>
+      </div>
+      <p style="margin-top: 1rem; font-style: italic; font-family: 'Fraunces', serif; color: var(--gold);">4 人 · 全程地鐵</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 住宿 -->
+<section class="section">
+  <div class="section-num">§ 03 · STAYS</div>
+  <h2 class="section-title">Where <em>we sleep</em></h2>
+  <ul class="lodging-list">
+    <li>
+      <div class="lodging-name">姑姑家 · Gaithersburg MD</div>
+      <div class="lodging-meta">07/12 → 07/19 · 8 nights · 2 Hidden Ponds Ct</div>
+    </li>
+    <li>
+      <div class="lodging-name">Arlo Midtown · NYC</div>
+      <div class="lodging-meta">07/20 → 07/24 中午 · 4 nights · ✓ 已訂</div>
+    </li>
+    <li>
+      <div class="lodging-name">Starlight Hotel · Flushing</div>
+      <div class="lodging-meta">07/24 → 07/25 · 1 night · 131-78 40th Rd</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ DC 段 ============ -->
+<section class="section">
+  <div class="section-num">§ 04 · DC ITINERARY</div>
+  <h2 class="section-title">8 days in <em>DC</em> & beyond</h2>
+  <p style="font-family:'Fraunces',serif; font-style:italic; margin-bottom: 2rem; color: var(--navy); font-size: 1.1rem;">姑姑當嚮導，兩台車輪流開，慢慢逛 Smithsonian + 周邊小旅行 ✨</p>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #2c5471 0%, #1a3a52 100%);">
+      <div class="day-card-image-emoji">🛬</div>
+      <div class="day-card-image-label">Arrival · 抵達日</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 01 · 週六</span><span class="day-card-date">07.12</span></div>
+      <div class="day-card-theme">🛌 抵達 · 補眠日</div>
+      <div class="day-intro"><strong style="color:var(--red);">時差緩衝日</strong><br>清晨 6:39 落地 IAD，姑姑接回 Gaithersburg。睡到自然醒，姑姑煮飯接風。不安排任何行程。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">06:39</span><span>IAD 落地，姑姑接機</span></li>
+        <li><span class="timeline-time">08:00</span><span>抵達 Gaithersburg 姑姑家</span></li>
+        <li><span class="timeline-time">─</span><span>全天補眠、洗澡、聊天</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #6b8e62 0%, #4a6b40 100%);">
+      <div class="day-card-image-emoji">🏡</div>
+      <div class="day-card-image-label">Rockville Day · 調時差</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 02 · 週日</span><span class="day-card-date">07.13</span></div>
+      <div class="day-card-theme">🏡 Gaithersburg 周邊輕鬆日</div>
+      <div class="day-intro"><strong style="color:var(--red);">慢慢醒過來的一天</strong><br>不進 DC 市區，就在 Gaithersburg 周邊逛。Rio Center 湖邊散步，Kentlands 仿老鎮逛街，晚上 Rockville Town Center 吃韓國/日本/中式餐廳擇一。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">10:00</span><span>睡到自然醒</span></li>
+        <li><span class="timeline-time">11:30</span><span>Rio Washingtonian Center 湖邊早午餐</span></li>
+        <li><span class="timeline-time">14:00</span><span>Kentlands 老鎮風格逛街</span></li>
+        <li><span class="timeline-time">17:00</span><span>Rockville Town Center 晚餐</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #1a3a52 0%, #c9a961 100%);">
+      <div class="day-card-image-emoji">🏛️</div>
+      <div class="day-card-image-label">National Mall · 國家廣場</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 03 · 週一</span><span class="day-card-date">07.14</span></div>
+      <div class="day-card-theme">🏛️ National Mall + 航太博物館</div>
+      <div class="day-intro"><strong style="color:var(--red);">DC 心臟一日</strong><br>開車到 Shady Grove 地鐵站停車，搭紅線進城。National Mall 是全世界最壯觀的「博物館一條街」——所有 Smithsonian 都免費！從航太博物館（看月球車）走到林肯紀念堂，沿途是越戰、韓戰、二戰紀念碑——美國從建國到 21 世紀的故事都在這條軸線上。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">08:30</span><span>開車到 Shady Grove 紅線</span></li>
+        <li><span class="timeline-time">10:00</span><span>華盛頓紀念碑（外觀）</span></li>
+        <li><span class="timeline-time">11:00</span><span><strong>國家航太博物館</strong>（🔴 線上預約免費票）</span></li>
+        <li><span class="timeline-time">14:30</span><span>林肯紀念堂 + 反思池</span></li>
+        <li><span class="timeline-time">15:30</span><span>越戰 + 韓戰紀念碑</span></li>
+        <li><span class="timeline-time">16:30</span><span>二戰紀念碑</span></li>
+        <li><span class="timeline-time">18:00</span><span>回 Shady Grove → 姑姑家</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #c1272d 0%, #1a3a52 100%);">
+      <div class="day-card-image-emoji">🏛️</div>
+      <div class="day-card-image-label">White House · 白宮日</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 04 · 週二</span><span class="day-card-date">07.15</span></div>
+      <div class="day-card-theme">🏛️ 白宮 + 歷史 + Jefferson</div>
+      <div class="day-intro"><strong style="color:var(--red);">穿越美國的這天</strong><br>白宮外觀拍照後，走進美國歷史博物館——First Ladies 服裝展、星條旗原旗（《星條旗永不落》就是為了這面旗寫的）。中午到白宮旁老牌 Old Ebbitt Grill 用餐（馬克吐溫、各任總統都來過）。下午自然史博物館看恐龍跟 Hope 鑽石。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:00</span><span>進城 → McPherson Sq 站</span></li>
+        <li><span class="timeline-time">10:00</span><span>白宮外觀 + Lafayette Sq</span></li>
+        <li><span class="timeline-time">11:00</span><span>美國歷史博物館</span></li>
+        <li><span class="timeline-time">13:30</span><span>Old Ebbitt Grill 午餐（白宮旁老牌）</span></li>
+        <li><span class="timeline-time">15:00</span><span>自然史博物館（恐龍 + Hope 鑽石）</span></li>
+        <li><span class="timeline-time">17:00</span><span>Tidal Basin → Jefferson Memorial</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #b85c38 0%, #c1272d 100%);">
+      <div class="day-card-image-emoji">🦀</div>
+      <div class="day-card-image-label">Baltimore · 蟹肉日</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 05 · 週三</span><span class="day-card-date">07.16</span></div>
+      <div class="day-card-theme">🦀 Baltimore 一日</div>
+      <div class="day-intro"><strong style="color:var(--red);">出城吃螃蟹</strong><br>姑姑家開車 1 小時到 Baltimore Inner Harbor 內港。National Aquarium 是東岸最大水族館（小孩會瘋），中午吃 Maryland 招牌蟹餅堡（Crab Cake）。下午看 Fort McHenry——這裡是美國國歌《星條旗永不落》誕生地，1814 年英國攻打這座堡壘，眼看炸不下來，旗子還在飄，作詞家當場寫了國歌。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:30</span><span>兩台車出發（1 小時車程）</span></li>
+        <li><span class="timeline-time">10:30</span><span>Inner Harbor 抵達</span></li>
+        <li><span class="timeline-time">11:00</span><span><strong>National Aquarium</strong>（3h）</span></li>
+        <li><span class="timeline-time">14:00</span><span>Faidley's 蟹餅堡 🦀</span></li>
+        <li><span class="timeline-time">15:30</span><span>Fort McHenry（國歌誕生地）</span></li>
+        <li><span class="timeline-time">17:30</span><span>Fell's Point 老港口晚餐</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #6b8e62 0%, #b85c38 100%);">
+      <div class="day-card-image-emoji">🐎</div>
+      <div class="day-card-image-label">Lancaster · 一日來回</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 06 · 週四</span><span class="day-card-date">07.17</span></div>
+      <div class="day-card-theme">🐎 Lancaster 阿米許聚落 · 一日來回</div>
+      <div class="day-intro"><strong style="color:var(--red);">穿越時光的一天</strong><br>早上 7 點出發，開車 2.5 小時到賓州 Lancaster County——這裡是阿米許教派聚落，<strong>他們拒絕電力、汽車、現代科技，至今用馬車代步</strong>。看真正的阿米許農場、坐他們的馬車、吃家庭式自助餐。下午過後啟程回 Gaithersburg（兩台車輪流開，車上輪流補眠）。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">07:00</span><span>姑姑家出發（2.5 小時車程）</span></li>
+        <li><span class="timeline-time">09:30</span><span>Amish Village 傳統農場</span></li>
+        <li><span class="timeline-time">11:00</span><span>🐎 <strong>阿米許馬車體驗</strong></span></li>
+        <li><span class="timeline-time">12:30</span><span>Plain & Fancy 家庭式自助餐 🥧</span></li>
+        <li><span class="timeline-time">14:00</span><span>Bird-in-Hand Farmers Market 採買</span></li>
+        <li><span class="timeline-time">15:30</span><span>啟程回 Gaithersburg（2.5 小時）</span></li>
+        <li><span class="timeline-time">18:00</span><span>抵達姑姑家，輕鬆吃晚餐</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #c9a961 0%, #1a3a52 100%);">
+      <div class="day-card-image-emoji">🖼️</div>
+      <div class="day-card-image-label">Smithsonian · 藝術日</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 07 · 週五</span><span class="day-card-date">07.18</span></div>
+      <div class="day-card-theme">🖼️ 藝廊 + 非裔美人歷史</div>
+      <div class="day-intro"><strong style="color:var(--red);">美國的兩種記憶</strong><br>上午<strong>非裔美人歷史文化博物館</strong> — 美國最重要的當代博物館之一，從奴隸時代到馬丁路德金、Obama 一條時間軸講完。<strong>3 個月前一定要預約免費票！</strong> 下午國家藝廊，達文西、維梅爾、莫內都有。週五傍晚雕塑花園有露天音樂會。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:30</span><span>Shady Grove → Smithsonian</span></li>
+        <li><span class="timeline-time">10:00</span><span><strong>非裔美人歷史文化博物館</strong>（🔴 3 個月前預約）</span></li>
+        <li><span class="timeline-time">13:00</span><span>午餐</span></li>
+        <li><span class="timeline-time">14:30</span><span>國家藝廊（達文西、維梅爾、莫內）</span></li>
+        <li><span class="timeline-time">17:00</span><span>雕塑花園週五露天音樂會</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #4a6b40 0%, #6b8e62 100%);">
+      <div class="day-card-image-emoji">👨‍👩‍👧</div>
+      <div class="day-card-image-label">Rest Day · 收尾日</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">DC Day 08 · 週六</span><span class="day-card-date">07.19</span></div>
+      <div class="day-card-theme">👨‍👩‍👧 陪姑姑日 / 整理</div>
+      <div class="day-intro"><strong style="color:var(--red);">隔天上紐約前的喘息</strong><br>整天彈性：陪姑姑吃飯、Costco 採買、收行李準備明天上紐約。長輩們可以在姑姑家輕鬆休息，準備之後不去紐約的這幾天慢活。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">A.M.</span><span>姑姑家輕鬆吃早餐</span></li>
+        <li><span class="timeline-time">P.M.</span><span>整理紐約行李 / 陪姑姑逛街</span></li>
+        <li><span class="timeline-time">EVE</span><span>家族聚餐，準備明日上路</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DC → NYC + NYC 段 ============ -->
+<section class="section">
+  <div class="section-num">§ 05 · NYC ITINERARY</div>
+  <h2 class="section-title">5 days in the <em>city</em></h2>
+  <p style="font-family:'Fraunces',serif; font-style:italic; margin-bottom: 2rem; color: var(--navy); font-size: 1.1rem;">表妹負責 7/20 上紐約那段。從 7/21 開始大黑陪你～</p>
+
+  <div class="stage-map">
+    <div class="stage-map-title">🚗 STAGE · DC → NYC · 自駕 4 小時 · 220 英里</div>
+    <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(180deg, #e8f0f5 0%, #d4e6f1 100%);">
+      <path d="M 0,30 Q 200,40 400,60 Q 600,90 800,140" fill="none" stroke="#a5cfe3" stroke-width="2" opacity="0.5"/>
+      <path d="M 0,0 L 800,0 L 800,140 Q 600,90 400,60 Q 200,40 0,30 Z" fill="#e8dcc4" stroke="#8b7355" stroke-width="0.8" opacity="0.6"/>
+      <text x="400" y="180" text-anchor="middle" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #1a3a52; opacity: 0.6;">Atlantic Ocean</text>
+      <path id="route-95" d="M 200,100 Q 300,80 400,70 Q 500,55 600,40" fill="none" stroke="#c9a961" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 200,100 Q 300,80 400,70 Q 500,55 600,40" fill="none" stroke="#c1272d" stroke-width="2" stroke-dasharray="8,4">
+        <animate attributeName="stroke-dashoffset" values="0;-200" dur="6s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="300" cy="80" r="3" fill="#1a3a52" opacity="0.6"/>
+      <text x="300" y="73" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #1a3a52;">Baltimore</text>
+      <circle cx="450" cy="65" r="3" fill="#1a3a52" opacity="0.6"/>
+      <text x="450" y="58" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #1a3a52;">Philly</text>
+      <circle cx="200" cy="100" r="10" fill="#c1272d"><animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="200" y="130" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; fill: #1a3a52;">DC · GAITHERSBURG</text>
+      <circle cx="600" cy="40" r="10" fill="#c9a961"><animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="600" y="25" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 16px; fill: #1a3a52;">NEW YORK</text>
+      <g><text style="font-size: 22px;"><animateMotion dur="6s" repeatCount="indefinite" rotate="auto"><mpath href="#route-95"/></animateMotion>🚗</text></g>
+    </svg>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #c1272d 0%, #1a3a52 100%);">
+      <div class="day-card-image-emoji">🗽</div>
+      <div class="day-card-image-label">Downtown & DUMBO</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">NYC Day 01 · 週二</span><span class="day-card-date">07.21</span></div>
+      <div class="day-card-theme">🗽 自由女神 + 下曼哈頓 + DUMBO</div>
+      <div class="day-intro"><strong style="color:var(--red);">紐約第一天，從自由開始</strong><br>船開出去那一刻，曼哈頓天際線在你身後展開，巨大的雕像從海平面緩緩浮現——這就是百年來移民眼中的「美國」第一印象。下午穿越華爾街、走過 911 那道無法癒合的傷疤，最後 DUMBO 橋下 golden hour 收尾。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">08:30</span><span>地鐵 1 號線到 South Ferry</span></li>
+        <li><span class="timeline-time">09:00</span><span><strong>自由女神 + Ellis Island</strong>（🔴 官網提前訂票）</span></li>
+        <li><span class="timeline-time">13:00</span><span>Stone Street 午餐</span></li>
+        <li><span class="timeline-time">14:30</span><span>銅牛、三一教堂、華爾街、911 紀念地</span></li>
+        <li><span class="timeline-time">17:30</span><span>Brooklyn Bridge 步行過橋</span></li>
+        <li><span class="timeline-time">18:30</span><span>📸 <strong>DUMBO Manhattan Bridge View</strong></span></li>
+        <li><span class="timeline-time">19:30</span><span>🍕 Juliana's 披薩 + 🍦 Brooklyn Ice Cream</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #c9a961 0%, #b85c38 100%);">
+      <div class="day-card-image-emoji">🏗️</div>
+      <div class="day-card-image-label">Chelsea & Midtown</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">NYC Day 02 · 週三</span><span class="day-card-date">07.22</span></div>
+      <div class="day-card-theme">🏗️ Chelsea + 高線公園 + SUMMIT 日落</div>
+      <div class="day-intro"><strong style="color:var(--red);">紐約的設計力一日</strong><br>從廢棄高架鐵路改造的 High Line 出發，這條空中公園改變了全世界城市對廢墟的看法。沿途看 Hudson Yards 的 Vessel 銅雕、停靠 80 年的無畏號航空母艦（10 歲小孩會瘋掉），夕陽下的 SUMMIT 鏡面景觀台像走進無限鏡萬花筒。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:00</span><span><strong>Chelsea Market</strong>（舊餅乾廠改建）</span></li>
+        <li><span class="timeline-time">10:30</span><span>📸 Little Island + High Line Park + Vessel</span></li>
+        <li><span class="timeline-time">12:00</span><span>Hudson Yards 午餐</span></li>
+        <li><span class="timeline-time">14:00</span><span><strong>Intrepid 無畏號航空母艦</strong>（2-3h）</span></li>
+        <li><span class="timeline-time">17:00</span><span>洛克斐勒中心、第五大道</span></li>
+        <li><span class="timeline-time">18:45</span><span>🌇 <strong>SUMMIT One Vanderbilt 日落</strong>（🔴 提前訂）</span></li>
+        <li><span class="timeline-time">20:30</span><span>中央車站 Whispering Gallery</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #4a2c5a 0%, #d4af37 100%);">
+      <div class="day-card-image-emoji">🎨</div>
+      <div class="day-card-image-label">MET & Broadway 🪄</div>
+    </div>
+    <div class="day-card-body">
+      <span class="highlight-badge">🪄 BROADWAY NIGHT</span>
+      <div class="day-card-header"><span class="day-card-num">NYC Day 03 · 週四</span><span class="day-card-date">07.23</span></div>
+      <div class="day-card-theme">🎨 MET + 中央公園 + 百老匯之夜</div>
+      <div class="day-intro"><strong style="color:var(--red);">藝術 × 童話一日</strong><br>早上先去 Levain 買全紐約最厚的胡桃餅乾當散步點心，再走進 MET 大都會藝術博物館——世界三大博物館之一，從埃及木乃伊到梵谷，3 小時嫌不夠。下午穿越中央公園 Bethesda Terrace（《姊妹》《復仇者》場景），晚上殺到時報廣場吃 Junior 起司蛋糕，然後走進魔法世界（往下看 ↓）。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:00</span><span>地鐵到 86 St → 🍪 <strong>Levain Bakery 84th St</strong></span></li>
+        <li><span class="timeline-time">10:00</span><span><strong>The MET 大都會藝術博物館</strong>（3-4h）</span></li>
+        <li><span class="timeline-time">14:30</span><span>中央公園 → ⛲️ Bethesda Terrace</span></li>
+        <li><span class="timeline-time">16:00</span><span>時報廣場（M&M、Hershey's、Disney）</span></li>
+        <li><span class="timeline-time">18:00</span><span><strong>Junior's Restaurant</strong> 晚餐 + 起司蛋糕</span></li>
+        <li><span class="timeline-time">19:00</span><span>🎭 <strong>百老匯 @ Lyric Theatre</strong></span></li>
+        <li><span class="timeline-time">22:30</span><span>🍕 Joe's Pizza 宵夜</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 哈利波特 -->
+<section class="harry-section">
+  <div class="magic-particle" style="top:10%; left:5%; animation-delay:0s;"></div>
+  <div class="magic-particle" style="top:30%; left:80%; animation-delay:1s;"></div>
+  <div class="magic-particle" style="top:60%; left:20%; animation-delay:2s;"></div>
+  <div class="magic-particle" style="top:75%; left:65%; animation-delay:3s;"></div>
+  <div class="magic-particle" style="top:25%; left:50%; animation-delay:4s;"></div>
+  <div class="magic-particle" style="top:50%; left:90%; animation-delay:5s;"></div>
+  <div class="harry-content">
+    <div style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.4em; color: var(--magic-gold); text-transform: uppercase; margin-bottom: 1rem; text-align: center;">⚡ OPTION A · BROADWAY ⚡</div>
+    <h2 class="harry-title">Harry Potter</h2>
+    <p class="harry-subtitle">and the Cursed Child · Lyric Theatre</p>
+    <p style="font-family: 'Cinzel', serif; font-style: italic; font-size: 1.3rem; text-align: center; margin: 2rem 0; color: var(--magic-gold);">✦ "The wand chooses the wizard" ✦</p>
+    <div class="harry-details">
+      <h4>✦ 為什麼是這齣</h4>
+      <p>故事接續電影第七集 19 年後——哈利的兒子 Albus 跟跩哥的兒子 Scorpius 在霍格華茲變成好朋友。時間倒轉魔咒讓他們意外改寫歷史，引出最終的黑暗對決。</p>
+    </div>
+    <div class="harry-details">
+      <h4>✦ 為什麼值得看</h4>
+      <ul>
+        <li><strong>2026 限定：Tom Felton 親自回鍋演跩哥</strong>（11/1 後就沒了）</li>
+        <li>百老匯特效之王 — 人會憑空消失、變身、飛</li>
+        <li>Tony 獎 6 項，包括最佳戲劇</li>
+        <li>整個劇院全部魔法主題裝潢</li>
+      </ul>
+    </div>
+    <div class="harry-details">
+      <h4>✦ 老實提醒</h4>
+      <p>⏱️ 全長 3 小時 30 分（含中場）<br>🎵 沒有音樂沒有歌唱，是「話劇」<br>🗣️ 全英文台詞，語速偏快<br>👶 10 歲小孩可看但要先看過電影<br>💵 票價 $89-$300（4 張）</p>
+    </div>
+  </div>
+</section>
+
+<!-- NYC Day 4 & 5 -->
+<section class="section">
+  <div class="day-card highlight">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #1a3a52 0%, #c1272d 100%);">
+      <div class="day-card-image-emoji">⚾</div>
+      <div class="day-card-image-label">Ohtani Night 🔥</div>
+    </div>
+    <div class="day-card-body">
+      <span class="highlight-badge">⚾ MAIN EVENT</span>
+      <div class="day-card-header"><span class="day-card-num">NYC Day 04 · 週五</span><span class="day-card-date">07.24</span></div>
+      <div class="day-card-theme">🥪 下東城 → 法拉盛 → 大谷登場</div>
+      <div class="day-intro"><strong style="color:var(--gold);">整趟旅行的主餐</strong><br>早上 Katz's 點經典 Pastrami on Rye——這家 1888 年的猶太熟食店是《當哈利遇到莎莉》「我也要點她的」名場景拍攝地。下午搬家到法拉盛，晚上 7 點走進 Citi Field，跟 4 萬名球迷一起站起來鼓掌：大谷翔平、Mookie Betts、Freeman、Alonso 全部上場。錯過要等下個賽季。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">09:30</span><span>行李寄放 Arlo → Flatiron + Harry Potter Shop 🪄</span></li>
+        <li><span class="timeline-time">10:30</span><span>🥪 <strong>Katz's Delicatessen</strong></span></li>
+        <li><span class="timeline-time">11:30</span><span>🥯 <strong>Russ & Daughters</strong></span></li>
+        <li><span class="timeline-time">12:00</span><span>華盛頓廣場公園</span></li>
+        <li><span class="timeline-time">14:00</span><span>取行李 → 叫車到 <strong>法拉盛 Starlight Hotel</strong></span></li>
+        <li><span class="timeline-time">17:00</span><span>抵 Citi Field</span></li>
+        <li><span class="timeline-time">19:00</span><span><strong>Mets vs Dodgers ⚾🔥</strong>（4 張票）</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #b85c38 0%, #c1272d 100%);">
+      <div class="day-card-image-emoji">🦞</div>
+      <div class="day-card-image-label">Jordan Lobster</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">NYC Day 05 · 週六</span><span class="day-card-date">07.25</span></div>
+      <div class="day-card-theme">🦞 Jordan Lobster → Long Beach → JFK</div>
+      <div class="day-intro"><strong style="color:var(--red);">紐約最後一天，回到海邊</strong><br>Jon 開車載你們到長島南岸的 Jordan Lobster Farm——這是 1938 年開到現在、家族經營的紐約客私藏海鮮聖地。直接從漁港進貨的活龍蝦，價格只要曼哈頓餐廳的一半。飯後 Long Beach 散步，遠處是 Coney Island 摩天輪。海風和龍蝦堡的鮮甜，是這趟旅行的結尾。</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">10:30</span><span>行李寄放 Starlight</span></li>
+        <li><span class="timeline-time">11:00</span><span><strong>Jon 接往餐廳</strong></span></li>
+        <li><span class="timeline-time">12:00</span><span>🦞 <strong>Jordan Lobster Farm</strong>（🔴 預約）</span></li>
+        <li><span class="timeline-time">13:30</span><span>🏝️ <strong>Long Beach</strong> 散步</span></li>
+        <li><span class="timeline-time">14:30</span><span>Roosevelt Mall</span></li>
+        <li><span class="timeline-time">18:00</span><span>法拉盛晚餐</span></li>
+        <li><span class="timeline-time">21:00</span><span>叫車 → <strong>JFK Terminal 4</strong></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stage-map">
+    <div class="stage-map-title">✈ FINAL STAGE · JFK → TPE · 跨太平洋回家</div>
+    <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(180deg, #d4e6f1 0%, #aed6e7 100%);">
+      <defs>
+        <pattern id="b-ocean" x="0" y="0" width="60" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 0,10 Q 15,5 30,10 T 60,10" stroke="#a5cfe3" stroke-width="0.5" fill="none" opacity="0.4"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="1000" height="250" fill="url(#b-ocean)"/>
+      <path d="M 0,30 L 120,25 Q 180,40 200,90 L 220,130 Q 200,170 150,180 L 80,190 Q 30,180 0,170 Z" fill="#e8dcc4" stroke="#8b7355" stroke-width="0.6" opacity="0.85"/>
+      <ellipse cx="155" cy="170" rx="5" ry="11" fill="#c1272d" stroke="#8b7355" stroke-width="0.5"/>
+      <path d="M 700,30 L 880,40 Q 940,70 960,130 L 950,180 Q 900,210 850,215 L 750,215 Q 700,200 690,160 Q 690,90 700,30 Z" fill="#e8dcc4" stroke="#8b7355" stroke-width="0.8"/>
+      <text x="450" y="130" text-anchor="middle" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; fill: #1a3a52; opacity: 0.5;">PACIFIC</text>
+      <text x="450" y="150" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #1a3a52; opacity: 0.4;">16h 30m · CI11</text>
+      <path id="return-path" d="M 920,80 Q 700,30 400,60 Q 250,100 155,170" fill="none" stroke="#c1272d" stroke-width="2.5" stroke-dasharray="8,4">
+        <animate attributeName="stroke-dashoffset" values="0;-200" dur="15s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="155" cy="170" r="9" fill="#c9a961"><animate attributeName="r" values="7;11;7" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="155" y="200" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">🏠 TPE 桃園</text>
+      <text x="155" y="218" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #1a3a52;">7/27 05:20 抵</text>
+      <circle cx="920" cy="80" r="9" fill="#c1272d"><animate attributeName="r" values="7;11;7" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="920" y="60" text-anchor="middle" style="font-family: 'Bebas Neue', sans-serif; font-size: 14px; fill: #1a3a52;">JFK 紐約</text>
+      <text x="920" y="42" text-anchor="middle" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #1a3a52;">7/26 01:15 起飛</text>
+      <g><text style="font-size: 22px;"><animateMotion dur="10s" repeatCount="indefinite" rotate="auto"><mpath href="#return-path"/></animateMotion>✈</text></g>
+    </svg>
+  </div>
+
+  <div class="day-card">
+    <div class="day-card-image" style="background: linear-gradient(135deg, #1a3a52 0%, #2c5471 100%);">
+      <div class="day-card-image-emoji">🏠</div>
+      <div class="day-card-image-label">Going Home</div>
+    </div>
+    <div class="day-card-body">
+      <div class="day-card-header"><span class="day-card-num">Day 16-17</span><span class="day-card-date">07.26 → 27</span></div>
+      <div class="day-card-theme">✈️ 飛回家</div>
+      <ul class="timeline">
+        <li><span class="timeline-time">7/26 01:15</span><span><strong>CI11 JFK 起飛</strong></span></li>
+        <li><span class="timeline-time">7/27 05:20</span><span>抵桃園 ☀️</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 預算 -->
+<section class="budget">
+<div style="max-width:760px; margin: 0 auto;">
+  <div class="section-num" style="color: var(--ink);">§ 06 · BUDGET</div>
+  <h2 class="section-title" style="color: var(--ink);">完整 <em>預算</em></h2>
+
+  <!-- DC 段預算 -->
+  <h3 style="font-family:'Fraunces',serif; font-style:italic; font-size: 1.4rem; margin-top: 1rem; color: var(--navy);">🏛️ DC 段（7 人 · 8 天）</h3>
+  <p style="font-family:'Fraunces',serif; font-style:italic; margin-bottom: 1rem; color: var(--navy); font-size: 0.9rem;">住姑姑家省一大筆，主要花費在交通跟餐費（USD）</p>
+  <div class="budget-table">
+    <div class="budget-row"><span>姑姑家住宿 8 晚</span><span class="budget-amount">$0（伴手禮另計）</span></div>
+    <div class="budget-row"><span>Smithsonian 系列博物館</span><span class="budget-amount">$0（全免費）</span></div>
+    <div class="budget-row"><span>🦀 Baltimore 一日（門票+午餐+晚餐）</span><span class="budget-amount">$280 - 420</span></div>
+    <div class="budget-row"><span>National Aquarium × 7 張</span><span class="budget-amount">$280 - 350</span></div>
+    <div class="budget-row"><span>🐎 Lancaster 一日（馬車+午餐+油錢）</span><span class="budget-amount">$350 - 500</span></div>
+    <div class="budget-row"><span>🏛️ DC 市區用餐（4-5 餐 × 7 人）</span><span class="budget-amount">$700 - 1,200</span></div>
+    <div class="budget-row"><span>🥩 Old Ebbitt Grill 午餐 × 7</span><span class="budget-amount">$280 - 420</span></div>
+    <div class="budget-row"><span>🚗 油錢 + Metro 地鐵 + 停車費</span><span class="budget-amount">$200 - 350</span></div>
+    <div class="budget-row"><span>🎁 給姑姑家伴手禮 + 採買貢獻</span><span class="budget-amount">$200 - 400</span></div>
+    <div class="budget-row"><span>DC 段預估總計</span><span class="budget-amount" style="color: var(--red); font-size: 1.3rem;">$2,290 - 3,640</span></div>
+  </div>
+
+  <!-- NYC 段預算 -->
+  <h3 style="font-family:'Fraunces',serif; font-style:italic; font-size: 1.4rem; margin-top: 2.5rem; color: var(--navy);">🗽 NYC 段（4 人 · 5 天）</h3>
+  <p style="font-family:'Fraunces',serif; font-style:italic; margin-bottom: 1rem; color: var(--navy); font-size: 0.9rem;">含食衣住行門票（USD）</p>
+  <div class="budget-table">
+    <div class="budget-row"><span>Arlo Midtown 4 晚（已訂）</span><span class="budget-amount">$1,600 - 2,800</span></div>
+    <div class="budget-row"><span>Starlight Hotel 法拉盛 1 晚</span><span class="budget-amount">$180 - 300</span></div>
+    <div class="budget-row"><span>🪄 百老匯 × 4 張</span><span class="budget-amount">$400 - 1,200</span></div>
+    <div class="budget-row"><span>⚾ Mets vs Dodgers × 4 張</span><span class="budget-amount">$400 - 1,400</span></div>
+    <div class="budget-row"><span>🌇 SUMMIT 日落 × 4 張</span><span class="budget-amount">$180 - 220</span></div>
+    <div class="budget-row"><span>🗽 自由女神 × 4 張</span><span class="budget-amount">$100 - 130</span></div>
+    <div class="budget-row"><span>🚢 無畏號 × 4 張</span><span class="budget-amount">$140 - 170</span></div>
+    <div class="budget-row"><span>🖼️ MET × 4 張</span><span class="budget-amount">$0 - 120</span></div>
+    <div class="budget-row"><span>🦞 Jordan Lobster × 4 人</span><span class="budget-amount">$200 - 350</span></div>
+    <div class="budget-row"><span>餐費（5 天 × 4 人）</span><span class="budget-amount">$1,000 - 1,500</span></div>
+    <div class="budget-row"><span>地鐵 + Uber</span><span class="budget-amount">$200 - 350</span></div>
+    <div class="budget-row"><span>紐約段預估總計</span><span class="budget-amount" style="color: var(--red); font-size: 1.3rem;">$4,400 - 8,500</span></div>
+  </div>
+
+  <!-- 總計 -->
+  <h3 style="font-family:'Fraunces',serif; font-style:italic; font-size: 1.4rem; margin-top: 2.5rem; color: var(--navy);">💰 全程總預估</h3>
+  <div class="budget-table">
+    <div class="budget-row"><span>✈️ 機票 FDUJ68（已訂，每人約）</span><span class="budget-amount">已付</span></div>
+    <div class="budget-row"><span>🏛️ DC 段 7 人 × 8 天</span><span class="budget-amount">$2,290 - 3,640</span></div>
+    <div class="budget-row"><span>🗽 NYC 段 4 人 × 5 天</span><span class="budget-amount">$4,400 - 8,500</span></div>
+    <div class="budget-row"><span>💸 全程現金預估（不含機票）</span><span class="budget-amount" style="color: var(--red); font-size: 1.5rem;">$6,690 - 12,140</span></div>
+  </div>
+
+  <p class="budget-note">※ 區間下緣 = 經濟艙位 / 區間上緣 = 中等舒適 · 球票熱門場價差大 · DC 段住姑姑家省超多</p>
+</div>
+</section>
+
+<!-- 訂票 -->
+<section class="todo">
+<div style="max-width:760px; margin: 0 auto;">
+  <div class="section-num">§ 07 · TO BOOK</div>
+  <h2 class="section-title">Don't <em>forget</em></h2>
+  <ul class="todo-list">
+    <li><span class="todo-priority done">已訂</span><span>華航 FDUJ68 · Arlo Midtown · Starlight Hotel</span></li>
+    <li><span class="todo-priority urgent">急</span><span><strong>Mets vs Dodgers 7/24 晚</strong> · 4 張票 ⚾</span></li>
+    <li><span class="todo-priority urgent">急</span><span><strong>百老匯 7/23（四）7pm</strong> · 4 張票 🪄</span></li>
+    <li><span class="todo-priority urgent">急</span><span>自由女神 + Ellis Island 船票 · 4 張</span></li>
+    <li><span class="todo-priority">3 月前</span><span>非裔美人史博物館免費票 × 7（最難預約）</span></li>
+    <li><span class="todo-priority">1 週前</span><span>SUMMIT One Vanderbilt 日落場 · 4 張</span></li>
+    <li><span class="todo-priority">1 週前</span><span>911 紀念博物館 + 國家航太博物館</span></li>
+    <li><span class="todo-priority">早點</span><span>Jordan Lobster Farm 預約 · 4 人</span></li>
+    <li><span class="todo-priority">早點</span><span>Lancaster Amish 馬車預約（如要） · 7 人</span></li>
+  </ul>
+</div>
+</section>
+
+<footer>
+  <p class="signoff">"See you on the other side of the Atlantic, Bernie."</p>
+  <p class="meta">East Coast 2026 · v10 · 含倒數計時</p>
+  <p class="meta" style="margin-top:0.5rem">Crafted with 💕 by 大黑</p>
+</footer>
+
+</main>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.day-card').forEach(card => observer.observe(card));
+
+// 倒數計時
+function updateCountdown() {
+  const target = new Date('2026-07-11T23:30:00+08:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff > 0) {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    const d = document.getElementById('cd-days'); if (d) d.textContent = days;
+    const h = document.getElementById('cd-hrs'); if (h) h.textContent = String(hrs).padStart(2,'0');
+    const m = document.getElementById('cd-mins'); if (m) m.textContent = String(mins).padStart(2,'0');
+    const s = document.getElementById('cd-secs'); if (s) s.textContent = String(secs).padStart(2,'0');
+  } else {
+    const d = document.getElementById('cd-days'); if (d) d.textContent = '🛫';
+  }
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
